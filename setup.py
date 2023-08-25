@@ -19,7 +19,8 @@ setup(
     'einops>=0.3',
     'local-attention>=1.1.1',
     'torch>=1.6',
-    'axial-positional-embedding>=0.1.0'
+    'axial-positional-embedding>=0.1.0',
+    'pytorch-fast-transformers>=0.3.0',
   ],
   classifiers=[
     'Development Status :: 4 - Beta',
