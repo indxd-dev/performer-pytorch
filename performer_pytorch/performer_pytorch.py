@@ -11,6 +11,7 @@ from contextlib import contextmanager
 from local_attention import LocalAttention
 from axial_positional_embedding import AxialPositionalEmbedding
 from performer_pytorch.reversible import ReversibleSequence, SequentialSequence
+from fast_transformers.causal_product import CausalDotProduct
 
 from distutils.version import LooseVersion
 
@@ -177,7 +178,6 @@ def linear_attention(q, k, v):
 # efficient causal linear attention, created by EPFL
 # TODO: rewrite EPFL's CUDA kernel to do mixed precision and remove half to float conversion and back
 def causal_linear_attention(q, k, v, eps = 1e-6):
-    from fast_transformers.causal_product import CausalDotProduct
     autocast_enabled = torch.is_autocast_enabled()
     is_half = isinstance(q, torch.cuda.HalfTensor)
     assert not is_half or APEX_AVAILABLE, 'half tensors can only be used if nvidia apex is available'
